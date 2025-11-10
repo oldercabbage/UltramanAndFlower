@@ -214,7 +214,7 @@ body {
     justify-content: center;
     align-items: center;
     margin: 40px 0;
-    height: 480px;
+    height: 590px;  /* 增加高度以容纳完整的奥特曼：510px + 边距 */
     position: relative;
 }
 
@@ -222,7 +222,7 @@ body {
 .ultraman {
     position: relative;
     width: 320px;
-    height: 400px;
+    height: 510px;  /* 增加高度以容纳腿部：410+100=510px */
     margin: 0 auto;
     transform-origin: center bottom;
     animation: ultramanIdle 2s ease-in-out infinite;
@@ -420,7 +420,7 @@ body {
     height: 100px;
     background: #ffffff;
     position: absolute;
-    top: 390px;
+    top: 410px;  /* 身体底部(260+150=410px)开始 */
     border: 3px solid rgba(73, 73, 74, 0.25);
     border-radius: 32px 32px 32px 32px;
     box-shadow: 
@@ -430,12 +430,14 @@ body {
 }
 
 .left-leg {
-    left: 22px;
+    left: 28px;
+    right: auto;
     transform: rotate(-4deg);
 }
 
 .right-leg {
-    right: 22px;
+    right: 28px;
+    left: auto;
     transform: rotate(4deg);
 }
 
@@ -741,12 +743,12 @@ body {
     }
 
     .ultraman-container {
-        height: 420px;
+        height: 470px;  /* 增加高度以容纳完整的奥特曼 */
     }
 
     .ultraman {
         width: 260px;
-        height: 340px;
+        height: 390px;  /* 增加高度：325+65=390px */
     }
 
     .ultraman-head {
@@ -831,16 +833,18 @@ body {
     .ultraman-leg {
         width: 42px;
         height: 65px;
-        top: 190px;
+        top: 325px;  /* 身体底部(210+115=325px)开始 */
         border-radius: 26px 26px 26px 26px;
     }
     
     .left-leg {
-        left: 18px;
+        left: 24px;
+        right: auto;
     }
     
     .right-leg {
-        right: 18px;
+        right: 24px;
+        left: auto;
     }
     
     .ultraman-leg:before {
@@ -873,12 +877,12 @@ body {
     }
     
     .ultraman-container {
-        height: 380px;
+        height: 408px;  /* 增加高度以容纳完整的奥特曼 */
     }
 
     .ultraman {
         width: 220px;
-        height: 300px;
+        height: 328px;  /* 增加高度：270+58=328px */
     }
 
     .ultraman-head {
@@ -963,16 +967,18 @@ body {
     .ultraman-leg {
         width: 36px;
         height: 58px;
-        top: 155px;
+        top: 270px;  /* 身体底部(175+95=270px)开始 */
         border-radius: 22px 22px 22px 22px;
     }
     
     .left-leg {
-        left: 15px;
+        left: 20px;
+        right: auto;
     }
     
     .right-leg {
-        right: 15px;
+        right: 20px;
+        left: auto;
     }
     
     .ultraman-leg:before {
