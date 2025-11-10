@@ -223,6 +223,7 @@ body {
     position: relative;
     width: 200px;
     height: 320px;
+    margin: 0 auto;
     transform-origin: center bottom;
     animation: ultramanIdle 2s ease-in-out infinite;
 }
@@ -382,14 +383,14 @@ body {
 }
 
 .left-arm {
-    left: -10px;
-    right: auto;
+    left: -10px !important;
+    right: auto !important;
     transform: rotate(-15deg);
 }
 
 .right-arm {
-    right: -10px;
-    left: auto;
+    right: -10px !important;
+    left: auto !important;
     transform: rotate(15deg);
 }
 
@@ -691,6 +692,8 @@ body {
 
 .right-arm.raise {
     animation: raiseArm 1s ease-out forwards;
+    right: -10px !important;
+    left: auto !important;
 }
 
 @keyframes raiseArm {
@@ -770,13 +773,13 @@ body {
     }
     
     .left-arm {
-        left: -4px;
-        right: auto;
+        left: -4px !important;
+        right: auto !important;
     }
     
     .right-arm {
-        right: -4px;
-        left: auto;
+        right: -4px !important;
+        left: auto !important;
     }
     
     .ultraman-arm:before {
@@ -878,13 +881,13 @@ body {
     }
     
     .left-arm {
-        left: -3px;
-        right: auto;
+        left: -3px !important;
+        right: auto !important;
     }
     
     .right-arm {
-        right: -3px;
-        left: auto;
+        right: -3px !important;
+        left: auto !important;
     }
     
     .ultraman-arm:before {
