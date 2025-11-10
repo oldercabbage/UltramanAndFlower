@@ -383,11 +383,13 @@ body {
 
 .left-arm {
     left: -10px;
+    right: auto;
     transform: rotate(-15deg);
 }
 
 .right-arm {
     right: -10px;
+    left: auto;
     transform: rotate(15deg);
 }
 
@@ -452,6 +454,7 @@ body {
     position: absolute;
     top: 50px;
     right: -22px;
+    left: auto;
     width: 50px;
     height: 50px;
     opacity: 0;
@@ -764,25 +767,22 @@ body {
         width: 34px;
         height: 58px;
         top: 115px;
-        left: -4px;
     }
     
-    .ultraman-arm.right-arm {
+    .left-arm {
+        left: -4px;
+        right: auto;
+    }
+    
+    .right-arm {
         right: -4px;
+        left: auto;
     }
     
     .ultraman-arm:before {
         width: 34px;
         height: 34px;
         bottom: -10px;
-    }
-
-    .left-arm {
-        left: 2px;
-    }
-
-    .right-arm {
-        right: 2px;
     }
 
     .ultraman-leg {
@@ -811,6 +811,7 @@ body {
         height: 40px;
         top: 40px;
         right: -18px;
+        left: auto;
     }
 
     .message-text {
@@ -874,11 +875,16 @@ body {
         width: 30px;
         height: 52px;
         top: 95px;
-        left: -3px;
     }
     
-    .ultraman-arm.right-arm {
+    .left-arm {
+        left: -3px;
+        right: auto;
+    }
+    
+    .right-arm {
         right: -3px;
+        left: auto;
     }
     
     .ultraman-arm:before {
@@ -913,6 +919,7 @@ body {
         height: 35px;
         top: 32px;
         right: -15px;
+        left: auto;
     }
 }
 
