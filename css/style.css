@@ -214,15 +214,15 @@ body {
     justify-content: center;
     align-items: center;
     margin: 40px 0;
-    height: 590px;  /* 增加高度以容纳完整的奥特曼：510px + 边距 */
+    height: 570px;  /* 缩短高度：490px + 边距（没有脚） */
     position: relative;
 }
 
-/* Q版奥特曼 - 2头身设计，大头小身体，脸很大 */
+/* Q版奥特曼 - 2头身设计，大头小身体，脸很大，不要脚 */
 .ultraman {
     position: relative;
     width: 320px;
-    height: 510px;  /* 增加高度以容纳腿部：410+100=510px */
+    height: 490px;  /* 缩短高度：410+80=490px（没有脚） */
     margin: 0 auto;
     transform-origin: center bottom;
     animation: ultramanIdle 2s ease-in-out infinite;
@@ -414,15 +414,15 @@ body {
     z-index: 7;
 }
 
-/* Q版腿部 - 更短更粗，外八字 - 白色皮肤，小朋友的胖腿 */
+/* Q版腿部 - 更短更粗，外八字 - 白色皮肤，小朋友的胖腿，不要脚 */
 .ultraman-leg {
     width: 65px;
-    height: 100px;
+    height: 80px;  /* 缩短腿部，不显示脚 */
     background: #ffffff;
     position: absolute;
     top: 410px;  /* 身体底部(260+150=410px)开始 */
     border: 3px solid rgba(73, 73, 74, 0.25);
-    border-radius: 32px 32px 32px 32px;
+    border-radius: 32px 32px 20px 20px;  /* 底部更圆润，像直接结束 */
     box-shadow: 
         0 4px 10px rgba(0, 0, 0, 0.12),
         inset 0 -3px 6px rgba(0, 0, 0, 0.06);
@@ -441,19 +441,9 @@ body {
     transform: rotate(4deg);
 }
 
-/* 脚 - 白色，更圆润 */
+/* 脚 - 隐藏，不要脚 */
 .ultraman-leg:before {
-    content: '';
-    position: absolute;
-    width: 72px;
-    height: 35px;
-    background: #ffffff;
-    border: 3px solid rgba(73, 73, 74, 0.25);
-    border-radius: 50%;
-    bottom: -12px;
-    left: 50%;
-    transform: translateX(-50%);
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+    display: none;
 }
 
 /* 花朵 - 固定在右手上，确保在手臂末端 */
@@ -743,12 +733,12 @@ body {
     }
 
     .ultraman-container {
-        height: 470px;  /* 增加高度以容纳完整的奥特曼 */
+        height: 457px;  /* 缩短高度（没有脚） */
     }
 
     .ultraman {
         width: 260px;
-        height: 390px;  /* 增加高度：325+65=390px */
+        height: 377px;  /* 缩短高度：325+52=377px（没有脚） */
     }
 
     .ultraman-head {
@@ -832,9 +822,9 @@ body {
 
     .ultraman-leg {
         width: 42px;
-        height: 65px;
+        height: 52px;  /* 缩短腿部，不显示脚 */
         top: 325px;  /* 身体底部(210+115=325px)开始 */
-        border-radius: 26px 26px 26px 26px;
+        border-radius: 26px 26px 16px 16px;  /* 底部更圆润 */
     }
     
     .left-leg {
@@ -848,9 +838,7 @@ body {
     }
     
     .ultraman-leg:before {
-        width: 46px;
-        height: 22px;
-        bottom: -7px;
+        display: none;  /* 隐藏脚 */
     }
     
     .flower {
@@ -877,12 +865,12 @@ body {
     }
     
     .ultraman-container {
-        height: 408px;  /* 增加高度以容纳完整的奥特曼 */
+        height: 396px;  /* 缩短高度（没有脚） */
     }
 
     .ultraman {
         width: 220px;
-        height: 328px;  /* 增加高度：270+58=328px */
+        height: 316px;  /* 缩短高度：270+46=316px（没有脚） */
     }
 
     .ultraman-head {
@@ -966,9 +954,9 @@ body {
     
     .ultraman-leg {
         width: 36px;
-        height: 58px;
+        height: 46px;  /* 缩短腿部，不显示脚 */
         top: 270px;  /* 身体底部(175+95=270px)开始 */
-        border-radius: 22px 22px 22px 22px;
+        border-radius: 22px 22px 14px 14px;  /* 底部更圆润 */
     }
     
     .left-leg {
@@ -982,9 +970,7 @@ body {
     }
     
     .ultraman-leg:before {
-        width: 40px;
-        height: 20px;
-        bottom: -6px;
+        display: none;  /* 隐藏脚 */
     }
     
     .flower {
