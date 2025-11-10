@@ -49,13 +49,21 @@ git push -u origin main
 
 ### 第三步：启用GitHub Pages（1分钟）
 
+**重要：使用静态部署，不需要GitHub Actions**
+
 1. 在GitHub仓库页面，点击 **Settings**
 2. 左侧菜单找到 **Pages**
 3. 在 **Source** 中选择：
+   - **Deploy from a branch**（不要选择GitHub Actions）
    - Branch: `main`
    - Folder: `/ (root)`
 4. 点击 **Save**
 5. 等待1-2分钟
+
+**注意：**
+- ✅ 使用 "Deploy from a branch"（静态部署）
+- ❌ 不要使用 "GitHub Actions"（会有权限问题）
+- ✅ 这是最简单可靠的方式
 
 ### 第四步：访问网站（立即）
 
