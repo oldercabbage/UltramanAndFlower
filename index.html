@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Q版奥特曼送花电子贺卡 - 送给最爱的你">
+    <title>Q版奥特曼送花贺卡</title>
+    
+    <!-- 微信分享优化 -->
+    <meta property="og:title" content="Q版奥特曼送花贺卡">
+    <meta property="og:description" content="送给最爱的你 - 一份特别的电子贺卡">
+    <meta property="og:image" content="./images/og-image.jpg">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="">
+    
+    <!-- 微信分享 -->
+    <meta name="wechat:title" content="Q版奥特曼送花贺卡">
+    <meta name="wechat:description" content="送给最爱的你 - 一份特别的电子贺卡">
+    <meta name="wechat:image" content="./images/og-image.jpg">
+    
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <div class="card-container">
+        <!-- 背景 -->
+        <div class="background">
+            <div class="stars"></div>
+            <div class="clouds">
+                <div class="cloud cloud1"></div>
+                <div class="cloud cloud2"></div>
+                <div class="cloud cloud3"></div>
+            </div>
+        </div>
+
+        <!-- 主卡片 -->
+        <div class="card" id="card">
+            <!-- 标题 -->
+            <div class="title-container">
+                <h1 class="title">送给最爱的你</h1>
+                <p class="subtitle">一份特别的礼物</p>
+            </div>
+
+            <!-- 奥特曼 -->
+            <div class="ultraman-container">
+                <div class="ultraman" id="ultraman">
+                    <div class="ultraman-head">
+                        <div class="eye left-eye"></div>
+                        <div class="eye right-eye"></div>
+                    </div>
+                    <div class="ultraman-body">
+                        <div class="chest-mark"></div>
+                    </div>
+                    <div class="ultraman-arm left-arm"></div>
+                    <div class="ultraman-arm right-arm" id="right-arm">
+                        <div class="flower" id="flower">
+                            <div class="petal petal1"></div>
+                            <div class="petal petal2"></div>
+                            <div class="petal petal3"></div>
+                            <div class="petal petal4"></div>
+                            <div class="petal petal5"></div>
+                            <div class="flower-center"></div>
+                        </div>
+                    </div>
+                    <div class="ultraman-leg left-leg"></div>
+                    <div class="ultraman-leg right-leg"></div>
+                </div>
+            </div>
+
+            <!-- 消息内容 -->
+            <div class="message-container">
+                <div class="message" id="message">
+                    <p class="message-text">亲爱的，</p>
+                    <p class="message-text">这束花送给你，</p>
+                    <p class="message-text">代表我对你的爱意！</p>
+                    <p class="message-text">❤️</p>
+                </div>
+            </div>
+
+            <!-- 按钮 -->
+            <div class="button-container">
+                <button class="btn btn-primary" id="play-btn">点击播放动画</button>
+                <button class="btn btn-secondary" id="share-btn">分享给朋友</button>
+            </div>
+
+            <!-- 花瓣飘落效果 -->
+            <div class="petals-fall" id="petals-fall"></div>
+        </div>
+
+        <!-- 祝福语 -->
+        <div class="blessing" id="blessing">
+            <p>愿我们的爱情</p>
+            <p>如这束花一样美丽</p>
+            <p>永远绽放！</p>
+        </div>
+    </div>
+
+    <!-- 音乐（可选）- 如果有背景音乐文件，取消下面的注释 -->
+    <!--
+    <audio id="bgm" loop>
+        <source src="audio/bgm.mp3" type="audio/mpeg">
+    </audio>
+    -->
+
+    <script src="js/main.js"></script>
+</body>
+</html>
+

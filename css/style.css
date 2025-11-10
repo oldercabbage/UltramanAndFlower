@@ -1,0 +1,939 @@
+/* 全局样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Microsoft YaHei', 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
+    overflow-x: hidden;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* 卡片容器 */
+.card-container {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 背景 */
+.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    overflow: hidden;
+}
+
+/* 星星 */
+.stars {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(2px 2px at 20% 30%, white, transparent),
+        radial-gradient(2px 2px at 60% 70%, white, transparent),
+        radial-gradient(1px 1px at 50% 50%, white, transparent),
+        radial-gradient(1px 1px at 80% 10%, white, transparent),
+        radial-gradient(2px 2px at 90% 40%, white, transparent),
+        radial-gradient(1px 1px at 33% 60%, white, transparent),
+        radial-gradient(1px 1px at 55% 80%, white, transparent);
+    background-repeat: repeat;
+    background-size: 200px 200px;
+    animation: twinkle 3s ease-in-out infinite alternate;
+}
+
+@keyframes twinkle {
+    from { opacity: 0.5; }
+    to { opacity: 1; }
+}
+
+/* 云朵 */
+.clouds {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.cloud {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50px;
+    opacity: 0.6;
+}
+
+.cloud:before,
+.cloud:after {
+    content: '';
+    position: absolute;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50px;
+}
+
+.cloud1 {
+    width: 100px;
+    height: 40px;
+    top: 20%;
+    left: 10%;
+    animation: float 20s infinite ease-in-out;
+}
+
+.cloud1:before {
+    width: 50px;
+    height: 50px;
+    top: -25px;
+    left: 10px;
+}
+
+.cloud1:after {
+    width: 60px;
+    height: 60px;
+    top: -35px;
+    right: 10px;
+}
+
+.cloud2 {
+    width: 120px;
+    height: 50px;
+    top: 60%;
+    right: 10%;
+    animation: float 25s infinite ease-in-out reverse;
+}
+
+.cloud2:before {
+    width: 60px;
+    height: 60px;
+    top: -30px;
+    left: 15px;
+}
+
+.cloud2:after {
+    width: 70px;
+    height: 70px;
+    top: -40px;
+    right: 15px;
+}
+
+.cloud3 {
+    width: 80px;
+    height: 35px;
+    top: 40%;
+    left: 50%;
+    animation: float 30s infinite ease-in-out;
+}
+
+.cloud3:before {
+    width: 40px;
+    height: 40px;
+    top: -20px;
+    left: 10px;
+}
+
+.cloud3:after {
+    width: 50px;
+    height: 50px;
+    top: -25px;
+    right: 10px;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateX(0) translateY(0); }
+    33% { transform: translateX(30px) translateY(-20px); }
+    66% { transform: translateX(-20px) translateY(20px); }
+}
+
+/* 主卡片 */
+.card {
+    position: relative;
+    z-index: 1;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 40px 30px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 500px;
+    margin: 20px;
+    backdrop-filter: blur(10px);
+    animation: cardAppear 1s ease-out;
+}
+
+@keyframes cardAppear {
+    from {
+        opacity: 0;
+        transform: translateY(50px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* 标题 */
+.title-container {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.title {
+    font-size: 2.5em;
+    color: #667eea;
+    margin-bottom: 10px;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    animation: titlePulse 2s ease-in-out infinite;
+}
+
+@keyframes titlePulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+.subtitle {
+    font-size: 1.2em;
+    color: #764ba2;
+    opacity: 0.8;
+}
+
+/* 奥特曼容器 */
+.ultraman-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 40px 0;
+    height: 380px;
+    position: relative;
+}
+
+/* Q版奥特曼 - 2头身设计，大头小身体，脸很大 */
+.ultraman {
+    position: relative;
+    width: 200px;
+    height: 320px;
+    transform-origin: center bottom;
+    animation: ultramanIdle 2s ease-in-out infinite;
+}
+
+@keyframes ultramanIdle {
+    0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
+    50% { transform: translateY(-8px) rotate(1deg) scale(1.02); }
+}
+
+/* Q版奥特曼头部 - 超大，脸很大 - 白色皮肤 */
+.ultraman-head {
+    width: 160px;
+    height: 160px;
+    background: #ffffff;
+    border-radius: 50%;
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 3px solid rgba(73, 73, 74, 0.3);
+    box-shadow: 
+        0 6px 16px rgba(0, 0, 0, 0.15),
+        inset 0 -8px 16px rgba(0, 0, 0, 0.08),
+        inset 0 2px 4px rgba(255, 255, 255, 0.8);
+    z-index: 10;
+}
+
+/* 头部高光效果 - 更柔和 */
+.ultraman-head:before {
+    content: '';
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    top: 15px;
+    left: 25px;
+    filter: blur(15px);
+    opacity: 0.8;
+}
+
+/* 头部的角（Q版特征）- 比较小 */
+.ultraman-head:after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: rgba(253, 39, 54, 0.15);
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 2px solid rgba(253, 39, 54, 0.4);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Q版大眼睛 - 黄色圆形像蛋黄，眼睛很大 */
+.eye {
+    width: 42px;
+    height: 42px;
+    background: #ffdf00;
+    border-radius: 50%;
+    position: absolute;
+    top: 60px;
+    border: 2px solid rgba(0, 0, 0, 0.15);
+    box-shadow: 
+        0 2px 6px rgba(0, 0, 0, 0.12),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.08),
+        inset 0 1px 3px rgba(255, 255, 255, 0.5);
+    animation: blink 4s infinite;
+    z-index: 11;
+}
+
+.eye:before {
+    content: '';
+    position: absolute;
+    width: 36px;
+    height: 36px;
+    background: #ffdf00;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 
+        inset 0 1px 3px rgba(255, 255, 255, 0.6),
+        inset 0 -1px 3px rgba(0, 0, 0, 0.12);
+}
+
+.eye:after {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    top: 30%;
+    left: 30%;
+    box-shadow: 0 0 4px rgba(255, 255, 255, 0.8);
+}
+
+.left-eye {
+    left: 20px;
+}
+
+.right-eye {
+    right: 20px;
+}
+
+@keyframes blink {
+    0%, 90%, 100% { 
+        height: 42px; 
+        transform: scaleY(1);
+    }
+    94%, 96% { 
+        height: 4px; 
+        transform: scaleY(0.1);
+    }
+}
+
+/* Q版身体 - 小朋友可爱的身体，更圆润更胖，像小宝宝 */
+.ultraman-body {
+    width: 140px;
+    height: 120px;
+    background: #ffffff;
+    position: absolute;
+    top: 130px;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 3px solid rgba(73, 73, 74, 0.2);
+    border-radius: 65px 65px 45px 45px;
+    box-shadow: 
+        0 6px 16px rgba(0, 0, 0, 0.12),
+        inset 0 -3px 6px rgba(0, 0, 0, 0.06),
+        inset 0 1px 2px rgba(255, 255, 255, 0.9);
+    z-index: 5;
+}
+
+/* 胸部标记 - 暂时隐藏，不画宝石 */
+.chest-mark {
+    display: none;
+}
+
+/* Q版手臂 - 更短更粗更圆润 - 白色皮肤，小朋友的胖手臂，连接到身体 */
+.ultraman-arm {
+    width: 42px;
+    height: 70px;
+    background: #ffffff;
+    position: absolute;
+    top: 135px;
+    border: 2px solid rgba(73, 73, 74, 0.25);
+    border-radius: 25px;
+    transform-origin: top center;
+    box-shadow: 
+        0 3px 8px rgba(0, 0, 0, 0.12),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.06);
+    z-index: 6;
+}
+
+.left-arm {
+    left: -10px;
+    transform: rotate(-15deg);
+}
+
+.right-arm {
+    right: -10px;
+    transform: rotate(15deg);
+}
+
+/* 手臂末端（手）- 白色，更圆润 */
+.ultraman-arm:before {
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background: #ffffff;
+    border: 2px solid rgba(73, 73, 74, 0.25);
+    border-radius: 50%;
+    bottom: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.12);
+    z-index: 7;
+}
+
+/* Q版腿部 - 更短更粗，外八字 - 白色皮肤，小朋友的胖腿 */
+.ultraman-leg {
+    width: 52px;
+    height: 80px;
+    background: #ffffff;
+    position: absolute;
+    top: 240px;
+    border: 3px solid rgba(73, 73, 74, 0.25);
+    border-radius: 32px 32px 32px 32px;
+    box-shadow: 
+        0 4px 10px rgba(0, 0, 0, 0.12),
+        inset 0 -3px 6px rgba(0, 0, 0, 0.06);
+    z-index: 3;
+}
+
+.left-leg {
+    left: 22px;
+    transform: rotate(-4deg);
+}
+
+.right-leg {
+    right: 22px;
+    transform: rotate(4deg);
+}
+
+/* 脚 - 白色，更圆润 */
+.ultraman-leg:before {
+    content: '';
+    position: absolute;
+    width: 55px;
+    height: 25px;
+    background: #ffffff;
+    border: 3px solid rgba(73, 73, 74, 0.25);
+    border-radius: 50%;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+}
+
+/* 花朵 - 固定在右手上，确保在手臂末端 */
+.flower {
+    position: absolute;
+    top: 50px;
+    right: -22px;
+    width: 50px;
+    height: 50px;
+    opacity: 0;
+    transform: scale(0);
+    transition: all 0.3s ease;
+    z-index: 11;
+    transform-origin: center center;
+}
+
+.flower.show {
+    opacity: 1;
+    transform: scale(1);
+    animation: flowerSwing 2s ease-in-out infinite;
+}
+
+@keyframes flowerSwing {
+    0%, 100% { 
+        transform: scale(1) rotate(0deg) translateX(0);
+    }
+    50% { 
+        transform: scale(1.05) rotate(8deg) translateX(2px);
+    }
+}
+
+/* 花瓣 */
+.petal {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    background: #ff69b4;
+    border-radius: 50% 0 50% 0;
+    transform-origin: center;
+}
+
+.petal1 {
+    top: 5px;
+    left: 50%;
+    transform: translateX(-50%) rotate(0deg);
+}
+
+.petal2 {
+    top: 50%;
+    right: 5px;
+    transform: translateY(-50%) rotate(90deg);
+}
+
+.petal3 {
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%) rotate(180deg);
+}
+
+.petal4 {
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%) rotate(270deg);
+}
+
+.petal5 {
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg) scale(0.8);
+}
+
+/* 花心 */
+.flower-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 15px;
+    height: 15px;
+    background: #ffd700;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+/* 消息容器 */
+.message-container {
+    margin: 30px 0;
+    text-align: center;
+    min-height: 120px;
+}
+
+.message {
+    opacity: 0;
+    animation: messageFadeIn 1s ease-out forwards;
+    animation-delay: 0.5s;
+}
+
+@keyframes messageFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.message-text {
+    font-size: 1.3em;
+    color: #333;
+    margin: 10px 0;
+    line-height: 1.8;
+}
+
+/* 按钮容器 */
+.button-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.btn {
+    padding: 15px 30px;
+    font-size: 1.1em;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.btn-primary:active {
+    transform: translateY(-1px);
+}
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.9);
+    color: #667eea;
+    border: 2px solid #667eea;
+}
+
+.btn-secondary:hover {
+    background: #667eea;
+    color: white;
+    transform: translateY(-3px);
+}
+
+/* 花瓣飘落 */
+.petals-fall {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.petal-fall {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background: #ff69b4;
+    border-radius: 50% 0 50% 0;
+    opacity: 0.7;
+    animation: fall linear;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* 祝福语 */
+.blessing {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    margin-top: 30px;
+    color: white;
+    font-size: 1.2em;
+    opacity: 0;
+    animation: blessingFadeIn 1s ease-out forwards;
+    animation-delay: 2s;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes blessingFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.blessing p {
+    margin: 10px 0;
+    line-height: 1.8;
+}
+
+/* 送花动画 */
+.ultraman.giving-flower {
+    animation: giveFlower 2s ease-in-out;
+}
+
+@keyframes giveFlower {
+    0% {
+        transform: translateY(0) rotate(0deg);
+    }
+    25% {
+        transform: translateY(-20px) rotate(-5deg);
+    }
+    50% {
+        transform: translateY(-30px) rotate(5deg);
+    }
+    75% {
+        transform: translateY(-20px) rotate(-3deg);
+    }
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+}
+
+.right-arm.raise {
+    animation: raiseArm 1s ease-out forwards;
+}
+
+@keyframes raiseArm {
+    from {
+        transform: rotate(20deg);
+    }
+    to {
+        transform: rotate(-70deg);
+    }
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .card {
+        padding: 30px 20px;
+        margin: 10px;
+    }
+
+    .title {
+        font-size: 2em;
+    }
+
+    .subtitle {
+        font-size: 1em;
+    }
+
+    .ultraman-container {
+        height: 320px;
+    }
+
+    .ultraman {
+        width: 160px;
+        height: 260px;
+    }
+
+    .ultraman-head {
+        width: 130px;
+        height: 130px;
+        top: -12px;
+    }
+    
+    .ultraman-head:after {
+        width: 16px;
+        height: 16px;
+        top: 6px;
+    }
+
+    .eye {
+        width: 34px;
+        height: 34px;
+        top: 48px;
+    }
+
+    .left-eye {
+        left: 16px;
+    }
+
+    .right-eye {
+        right: 16px;
+    }
+
+    .ultraman-body {
+        width: 110px;
+        height: 95px;
+        top: 105px;
+        border-radius: 50px 50px 35px 35px;
+    }
+
+    .chest-mark {
+        display: none;
+    }
+
+    .ultraman-arm {
+        width: 34px;
+        height: 58px;
+        top: 115px;
+        left: -4px;
+    }
+    
+    .ultraman-arm.right-arm {
+        right: -4px;
+    }
+    
+    .ultraman-arm:before {
+        width: 34px;
+        height: 34px;
+        bottom: -10px;
+    }
+
+    .left-arm {
+        left: 2px;
+    }
+
+    .right-arm {
+        right: 2px;
+    }
+
+    .ultraman-leg {
+        width: 42px;
+        height: 65px;
+        top: 190px;
+        border-radius: 26px 26px 26px 26px;
+    }
+    
+    .left-leg {
+        left: 18px;
+    }
+    
+    .right-leg {
+        right: 18px;
+    }
+    
+    .ultraman-leg:before {
+        width: 46px;
+        height: 22px;
+        bottom: -7px;
+    }
+    
+    .flower {
+        width: 40px;
+        height: 40px;
+        top: 40px;
+        right: -18px;
+    }
+
+    .message-text {
+        font-size: 1.1em;
+    }
+
+    .btn {
+        font-size: 1em;
+        padding: 12px 25px;
+    }
+}
+
+@media (max-width: 480px) {
+    .title {
+        font-size: 1.5em;
+    }
+
+    .ultraman {
+        width: 140px;
+        height: 240px;
+    }
+
+    .ultraman-head {
+        width: 110px;
+        height: 110px;
+        top: -10px;
+    }
+    
+    .ultraman-head:after {
+        width: 12px;
+        height: 12px;
+        top: 4px;
+    }
+    
+    .eye {
+        width: 26px;
+        height: 26px;
+        top: 38px;
+    }
+    
+    .left-eye {
+        left: 12px;
+    }
+    
+    .right-eye {
+        right: 12px;
+    }
+
+    .ultraman-body {
+        width: 95px;
+        height: 75px;
+        top: 85px;
+        border-radius: 45px 45px 30px 30px;
+    }
+
+    .chest-mark {
+        display: none;
+    }
+
+    .ultraman-arm {
+        width: 30px;
+        height: 52px;
+        top: 95px;
+        left: -3px;
+    }
+    
+    .ultraman-arm.right-arm {
+        right: -3px;
+    }
+    
+    .ultraman-arm:before {
+        width: 30px;
+        height: 30px;
+        bottom: -9px;
+    }
+    
+    .ultraman-leg {
+        width: 36px;
+        height: 58px;
+        top: 155px;
+        border-radius: 22px 22px 22px 22px;
+    }
+    
+    .left-leg {
+        left: 15px;
+    }
+    
+    .right-leg {
+        right: 15px;
+    }
+    
+    .ultraman-leg:before {
+        width: 40px;
+        height: 20px;
+        bottom: -6px;
+    }
+    
+    .flower {
+        width: 35px;
+        height: 35px;
+        top: 32px;
+        right: -15px;
+    }
+}
+
+/* 加载动画 */
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid rgba(255, 255, 255, 0.3);
+    border-top-color: #667eea;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+

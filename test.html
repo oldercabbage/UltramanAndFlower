@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>测试页面</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-item {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .test-item h2 {
+            color: #667eea;
+            margin-top: 0;
+        }
+        .status {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .status.ok {
+            background: #4caf50;
+            color: white;
+        }
+        .status.error {
+            background: #f44336;
+            color: white;
+        }
+        .status.warning {
+            background: #ff9800;
+            color: white;
+        }
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #764ba2;
+        }
+    </style>
+</head>
+<body>
+    <h1>项目测试页面</h1>
+    
+    <div class="test-item">
+        <h2>文件检查</h2>
+        <div id="file-check"></div>
+    </div>
+    
+    <div class="test-item">
+        <h2>功能测试</h2>
+        <button onclick="testAnimation()">测试动画</button>
+        <button onclick="testShare()">测试分享</button>
+        <button onclick="openMainPage()">打开主页面</button>
+    </div>
+    
+    <div class="test-item">
+        <h2>浏览器信息</h2>
+        <div id="browser-info"></div>
+    </div>
+
+    <script>
+        // 检查文件
+        function checkFiles() {
+            const files = [
+                'index.html',
+                'css/style.css',
+                'js/main.js',
+                'images/og-image.jpg'
+            ];
+            
+            const fileCheck = document.getElementById('file-check');
+            let html = '';
+            
+            files.forEach(file => {
+                fetch(file)
+                    .then(response => {
+                        if (response.ok) {
+                            html += `<p><span class="status ok">✓</span> ${file} - 存在</p>`;
+                        } else {
+                            html += `<p><span class="status error">✗</span> ${file} - 不存在</p>`;
+                        }
+                        fileCheck.innerHTML = html;
+                    })
+                    .catch(error => {
+                        html += `<p><span class="status error">✗</span> ${file} - 错误: ${error.message}</p>`;
+                        fileCheck.innerHTML = html;
+                    });
+            });
+        }
+        
+        // 显示浏览器信息
+        function showBrowserInfo() {
+            const info = document.getElementById('browser-info');
+            info.innerHTML = `
+                <p><strong>User Agent:</strong> ${navigator.userAgent}</p>
+                <p><strong>平台:</strong> ${navigator.platform}</p>
+                <p><strong>语言:</strong> ${navigator.language}</p>
+                <p><strong>屏幕尺寸:</strong> ${screen.width}x${screen.height}</p>
+                <p><strong>窗口尺寸:</strong> ${window.innerWidth}x${window.innerHeight}</p>
+                <p><strong>触摸支持:</strong> ${('ontouchstart' in window) ? '是' : '否'}</p>
+                <p><strong>Web Share API:</strong> ${('share' in navigator) ? '支持' : '不支持'}</p>
+            `;
+        }
+        
+        // 测试动画
+        function testAnimation() {
+            alert('动画测试：请打开主页面测试动画功能');
+        }
+        
+        // 测试分享
+        function testShare() {
+            if ('share' in navigator) {
+                navigator.share({
+                    title: '测试分享',
+                    text: '这是一个测试',
+                    url: window.location.href
+                }).then(() => {
+                    alert('分享成功！');
+                }).catch(error => {
+                    alert('分享失败：' + error.message);
+                });
+            } else {
+                alert('浏览器不支持Web Share API');
+            }
+        }
+        
+        // 打开主页面
+        function openMainPage() {
+            window.location.href = 'index.html';
+        }
+        
+        // 页面加载时执行
+        window.addEventListener('load', function() {
+            checkFiles();
+            showBrowserInfo();
+        });
+    </script>
+</body>
+</html>
+
