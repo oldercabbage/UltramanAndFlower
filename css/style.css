@@ -295,6 +295,8 @@ body {
         inset 0 2px 4px rgba(255, 255, 255, 0.5);
     animation: blink 4s infinite;
     z-index: 11;
+    /* 使用left定位，right设为auto，避免定位冲突 */
+    right: auto;
 }
 
 .eye:before {
@@ -325,11 +327,13 @@ body {
 }
 
 .left-eye {
-    left: 60px;
+    left: 40px;
+    right: auto;
 }
 
 .right-eye {
-    right: 60px;
+    left: 196px;  /* 40 + 84 + 72(间距) = 196px */
+    right: auto;
 }
 
 @keyframes blink {
@@ -768,6 +772,7 @@ body {
         width: 68px;
         height: 68px;
         top: 100px;
+        right: auto;
     }
     
     .eye:before {
@@ -781,11 +786,13 @@ body {
     }
 
     .left-eye {
-        left: 50px;
+        left: 32px;
+        right: auto;
     }
 
     .right-eye {
-        right: 50px;
+        left: 160px;  /* 32 + 68 + 60(间距) = 160px */
+        right: auto;
     }
 
     .ultraman-body {
@@ -897,6 +904,7 @@ body {
         width: 58px;
         height: 58px;
         top: 85px;
+        right: auto;
     }
     
     .eye:before {
@@ -910,11 +918,13 @@ body {
     }
     
     .left-eye {
-        left: 42px;
+        left: 27px;
+        right: auto;
     }
     
     .right-eye {
-        right: 42px;
+        left: 135px;  /* 27 + 58 + 50(间距) = 135px */
+        right: auto;
     }
 
     .ultraman-body {
