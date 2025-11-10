@@ -201,14 +201,150 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // 自动播放动画（首次加载）
+    // 自动播放动画（首次加载）- 移动端延迟更长
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    const autoPlayDelay = isMobile ? 1500 : 1000;
+    
     setTimeout(() => {
         playGiveFlowerAnimation();
-    }, 1000);
+    }, autoPlayDelay);
 
-    // 绑定事件
-    playBtn.addEventListener('click', playGiveFlowerAnimation);
-    shareBtn.addEventListener('click', shareCard);
+    // 绑定事件 - 移动端兼容
+    const isMobileDevice = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    
+    // 为每个按钮单独设置状态
+    let playBtnTouchHandled = false;
+    let playBtnLastClickTime = 0;
+    let shareBtnTouchHandled = false;
+    let shareBtnLastClickTime = 0;
+    
+    function handlePlayClick(e) {
+        // 防止快速重复点击
+        const now = Date.now();
+        if (now - playBtnLastClickTime < 500) {
+            console.log('播放按钮：防抖中，忽略点击');
+            return;
+        }
+        playBtnLastClickTime = now;
+        
+        // 防止移动端click和touchend重复触发
+        if (playBtnTouchHandled && e && e.type === 'click') {
+            console.log('播放按钮：已处理触摸事件，忽略click');
+            return;
+        }
+        
+        if (e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+        
+        console.log('播放按钮被点击:', e ? e.type : 'direct');
+        playGiveFlowerAnimation();
+    }
+    
+    function handleShareClick(e) {
+        // 防止快速重复点击
+        const now = Date.now();
+        if (now - shareBtnLastClickTime < 500) {
+            console.log('分享按钮：防抖中，忽略点击');
+            return;
+        }
+        shareBtnLastClickTime = now;
+        
+        // 防止移动端click和touchend重复触发
+        if (shareBtnTouchHandled && e && e.type === 'click') {
+            console.log('分享按钮：已处理触摸事件，忽略click');
+            return;
+        }
+        
+        if (e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+        
+        console.log('分享按钮被点击:', e ? e.type : 'direct');
+        shareCard();
+    }
+    
+    // 移动端：使用touchend，阻止click事件
+    if (isMobileDevice) {
+        console.log('检测到移动端设备，使用触摸事件');
+        
+        // 播放按钮 - 触摸开始：提供视觉反馈
+        playBtn.addEventListener('touchstart', function(e) {
+            this.style.opacity = '0.8';
+            this.style.transform = 'scale(0.98)';
+            playBtnTouchHandled = false;
+        }, { passive: true });
+        
+        // 播放按钮 - 触摸结束：触发动作
+        playBtn.addEventListener('touchend', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            this.style.opacity = '1';
+            this.style.transform = 'scale(1)';
+            playBtnTouchHandled = true;
+            console.log('播放按钮：touchend触发');
+            handlePlayClick(e);
+            // 阻止300ms后的click事件
+            setTimeout(() => {
+                playBtnTouchHandled = false;
+            }, 400);
+        }, { passive: false });
+        
+        // 播放按钮 - 绑定click但阻止执行（移动端有300ms延迟）
+        playBtn.addEventListener('click', function(e) {
+            if (!playBtnTouchHandled) {
+                // 如果touchend没有触发，说明可能是鼠标点击（某些平板）
+                console.log('播放按钮：click触发（touchend未处理）');
+                handlePlayClick(e);
+            } else {
+                console.log('播放按钮：阻止click事件（已处理touchend）');
+                e.preventDefault();
+                e.stopPropagation();
+            }
+        }, false);
+        
+        // 分享按钮 - 触摸开始：提供视觉反馈
+        shareBtn.addEventListener('touchstart', function(e) {
+            this.style.opacity = '0.8';
+            this.style.transform = 'scale(0.98)';
+            shareBtnTouchHandled = false;
+        }, { passive: true });
+        
+        // 分享按钮 - 触摸结束：触发动作
+        shareBtn.addEventListener('touchend', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            this.style.opacity = '1';
+            this.style.transform = 'scale(1)';
+            shareBtnTouchHandled = true;
+            console.log('分享按钮：touchend触发');
+            handleShareClick(e);
+            setTimeout(() => {
+                shareBtnTouchHandled = false;
+            }, 400);
+        }, { passive: false });
+        
+        // 分享按钮 - 绑定click但阻止执行
+        shareBtn.addEventListener('click', function(e) {
+            if (!shareBtnTouchHandled) {
+                console.log('分享按钮：click触发（touchend未处理）');
+                handleShareClick(e);
+            } else {
+                console.log('分享按钮：阻止click事件（已处理touchend）');
+                e.preventDefault();
+                e.stopPropagation();
+            }
+        }, false);
+    } else {
+        // 桌面端：只使用click事件
+        console.log('检测到桌面端设备，使用click事件');
+        playBtn.addEventListener('click', handlePlayClick, false);
+        shareBtn.addEventListener('click', handleShareClick, false);
+    }
+    
+    console.log('事件监听器已绑定 - 移动端:', isMobileDevice);
 
     // 初始化微信分享
     initWeChatShare();
