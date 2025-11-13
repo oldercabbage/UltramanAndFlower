@@ -208,14 +208,16 @@ body {
     opacity: 0.8;
 }
 
-/* 奥特曼容器 */
+/* 奥特曼容器 - 包含奥特曼和小怪兽 */
 .ultraman-container {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-around;
+    align-items: flex-end;
     margin: 40px 0;
     height: 570px;  /* 缩短高度：490px + 边距（没有脚） */
     position: relative;
+    gap: 40px;
+    flex-wrap: wrap;
 }
 
 /* Q版奥特曼 - 2头身设计，大头小身体，脸很大，不要脚 */
@@ -446,8 +448,8 @@ body {
     display: none;
 }
 
-/* 花朵 - 固定在右手上，确保在手臂末端 */
-.flower {
+/* 温暖光效 - 固定在右手上，确保在手臂末端 */
+.warmth-light {
     position: absolute;
     top: 80px;
     right: -28px;
@@ -461,78 +463,241 @@ body {
     transform-origin: center center;
 }
 
-.flower.show {
+.warmth-light.show {
     opacity: 1;
     transform: scale(1);
-    animation: flowerSwing 2s ease-in-out infinite;
+    animation: warmthPulse 2s ease-in-out infinite;
 }
 
-@keyframes flowerSwing {
+@keyframes warmthPulse {
     0%, 100% { 
-        transform: scale(1) rotate(0deg) translateX(0);
+        transform: scale(1) rotate(0deg);
     }
     50% { 
-        transform: scale(1.05) rotate(8deg) translateX(2px);
+        transform: scale(1.1) rotate(5deg);
     }
 }
 
-/* 花瓣 - 确保显示花的形状 */
-.petal {
-    position: absolute;
-    width: 30px;
-    height: 30px;
-    background: #ff69b4;
-    border-radius: 50% 0 50% 0;
-    transform-origin: center center;
-    z-index: 1;
-    opacity: 1 !important;
-    visibility: visible !important;
-}
-
-.petal1 {
-    top: 8px;
-    left: 50%;
-    transform: translateX(-50%) rotate(0deg);
-}
-
-.petal2 {
-    top: 50%;
-    right: 8px;
-    transform: translateY(-50%) rotate(90deg);
-}
-
-.petal3 {
-    bottom: 8px;
-    left: 50%;
-    transform: translateX(-50%) rotate(180deg);
-}
-
-.petal4 {
-    top: 50%;
-    left: 8px;
-    transform: translateY(-50%) rotate(270deg);
-}
-
-.petal5 {
-    top: 18px;
-    left: 50%;
-    transform: translateX(-50%) rotate(45deg) scale(0.85);
-}
-
-/* 花心 - 确保显示 */
-.flower-center {
+/* 光效环 */
+.light-ring {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 18px;
-    height: 18px;
-    background: #ffd700;
+    border-radius: 50%;
+    border: 3px solid;
+    opacity: 0.6;
+    animation: ringPulse 2s ease-in-out infinite;
+}
+
+.light-ring1 {
+    width: 60px;
+    height: 60px;
+    border-color: #ffd700;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+    animation-delay: 0s;
+}
+
+.light-ring2 {
+    width: 50px;
+    height: 50px;
+    border-color: #ff8c00;
+    box-shadow: 0 0 15px rgba(255, 140, 0, 0.5);
+    animation-delay: 0.3s;
+}
+
+.light-ring3 {
+    width: 40px;
+    height: 40px;
+    border-color: #ff6347;
+    box-shadow: 0 0 10px rgba(255, 99, 71, 0.4);
+    animation-delay: 0.6s;
+}
+
+@keyframes ringPulse {
+    0%, 100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.6;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.2);
+        opacity: 0.3;
+    }
+}
+
+/* 光效核心 */
+.light-core {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    background: radial-gradient(circle, #fff 0%, #ffd700 50%, #ff8c00 100%);
+    border-radius: 50%;
     z-index: 2;
     opacity: 1 !important;
     visibility: visible !important;
+    box-shadow: 
+        0 0 20px rgba(255, 215, 0, 0.8),
+        0 0 40px rgba(255, 140, 0, 0.6),
+        0 0 60px rgba(255, 99, 71, 0.4);
+    animation: coreGlow 1.5s ease-in-out infinite;
+}
+
+@keyframes coreGlow {
+    0%, 100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.3);
+        opacity: 0.8;
+    }
+}
+
+/* 小怪兽 - Q版设计 */
+.monster {
+    position: relative;
+    width: 200px;
+    height: 280px;
+    margin: 0 auto;
+    transform-origin: center bottom;
+    animation: monsterIdle 2.5s ease-in-out infinite;
+    z-index: 5;
+}
+
+@keyframes monsterIdle {
+    0%, 100% { 
+        transform: translateY(0) scale(1); 
+    }
+    50% { 
+        transform: translateY(-5px) scale(1.01); 
+    }
+}
+
+/* 小怪兽头部 - 圆润可爱 */
+.monster-head {
+    position: absolute;
+    width: 140px;
+    height: 140px;
+    background: #8b4513;
+    border: 3px solid rgba(73, 73, 74, 0.3);
     border-radius: 50%;
-    box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 
+        0 4px 12px rgba(0, 0, 0, 0.15),
+        inset 0 2px 8px rgba(255, 255, 255, 0.2);
+    z-index: 6;
+}
+
+/* 小怪兽眼睛 */
+.monster-eye {
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    background: #ffffff;
+    border: 2px solid rgba(0, 0, 0, 0.3);
+    border-radius: 50%;
+    top: 45px;
+    z-index: 7;
+}
+
+.monster-eye-left {
+    left: 30px;
+}
+
+.monster-eye-right {
+    right: 30px;
+}
+
+.monster-eye:before {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: #000;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* 小怪兽嘴巴 */
+.monster-mouth {
+    position: absolute;
+    width: 40px;
+    height: 20px;
+    border: 2px solid rgba(0, 0, 0, 0.3);
+    border-top: none;
+    border-radius: 0 0 40px 40px;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 192, 203, 0.3);
+}
+
+/* 小怪兽身体 */
+.monster-body {
+    position: absolute;
+    width: 120px;
+    height: 100px;
+    background: #8b4513;
+    border: 3px solid rgba(73, 73, 74, 0.3);
+    border-radius: 50px 50px 30px 30px;
+    top: 120px;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 
+        0 4px 10px rgba(0, 0, 0, 0.12),
+        inset 0 -3px 6px rgba(0, 0, 0, 0.06);
+    z-index: 5;
+}
+
+/* 小怪兽手臂 */
+.monster-arm {
+    position: absolute;
+    width: 35px;
+    height: 60px;
+    background: #8b4513;
+    border: 2px solid rgba(73, 73, 74, 0.3);
+    border-radius: 20px;
+    top: 130px;
+    z-index: 4;
+}
+
+.monster-arm-left {
+    left: 10px;
+    transform: rotate(-15deg);
+}
+
+.monster-arm-right {
+    right: 10px;
+    transform: rotate(15deg);
+}
+
+/* 小怪兽腿部 */
+.monster-leg {
+    position: absolute;
+    width: 40px;
+    height: 60px;
+    background: #8b4513;
+    border: 2px solid rgba(73, 73, 74, 0.3);
+    border-radius: 20px 20px 15px 15px;
+    top: 210px;
+    z-index: 3;
+}
+
+.monster-leg-left {
+    left: 35px;
+    transform: rotate(-5deg);
+}
+
+.monster-leg-right {
+    right: 35px;
+    transform: rotate(5deg);
 }
 
 /* 消息容器 */
@@ -621,8 +786,8 @@ body {
     transform: translateY(-3px);
 }
 
-/* 花瓣飘落 */
-.petals-fall {
+/* 温暖粒子飘落 */
+.warmth-particles {
     position: fixed;
     top: 0;
     left: 0;
@@ -632,19 +797,20 @@ body {
     z-index: 10;
 }
 
-.petal-fall {
+.warmth-particle {
     position: absolute;
-    width: 15px;
-    height: 15px;
-    background: #ff69b4;
-    border-radius: 50% 0 50% 0;
-    opacity: 0.7;
-    animation: fall linear;
+    width: 8px;
+    height: 8px;
+    background: radial-gradient(circle, #ffd700 0%, #ff8c00 100%);
+    border-radius: 50%;
+    opacity: 0.8;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+    animation: warmthFall linear;
 }
 
-@keyframes fall {
+@keyframes warmthFall {
     to {
-        transform: translateY(100vh) rotate(360deg);
+        transform: translateY(100vh) rotate(360deg) scale(0);
         opacity: 0;
     }
 }
@@ -679,12 +845,12 @@ body {
     line-height: 1.8;
 }
 
-/* 送花动画 */
-.ultraman.giving-flower {
-    animation: giveFlower 2s ease-in-out;
+/* 送温暖动画 */
+.ultraman.giving-warmth {
+    animation: giveWarmth 2s ease-in-out;
 }
 
-@keyframes giveFlower {
+@keyframes giveWarmth {
     0% {
         transform: translateY(0) rotate(0deg);
     }
@@ -699,6 +865,26 @@ body {
     }
     100% {
         transform: translateY(0) rotate(0deg);
+    }
+}
+
+/* 小怪兽接收温暖动画 */
+.monster.receiving-warmth {
+    animation: receiveWarmth 2s ease-in-out;
+}
+
+@keyframes receiveWarmth {
+    0%, 100% {
+        transform: translateY(0) scale(1);
+    }
+    25% {
+        transform: translateY(-10px) scale(1.05);
+    }
+    50% {
+        transform: translateY(-15px) scale(1.08);
+    }
+    75% {
+        transform: translateY(-10px) scale(1.05);
     }
 }
 
@@ -734,6 +920,70 @@ body {
 
     .ultraman-container {
         height: 457px;  /* 缩短高度（没有脚） */
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    /* 小怪兽移动端样式 */
+    .monster {
+        width: 160px;
+        height: 220px;
+    }
+    
+    .monster-head {
+        width: 110px;
+        height: 110px;
+    }
+    
+    .monster-eye {
+        width: 22px;
+        height: 22px;
+        top: 35px;
+    }
+    
+    .monster-eye-left {
+        left: 24px;
+    }
+    
+    .monster-eye-right {
+        right: 24px;
+    }
+    
+    .monster-eye:before {
+        width: 10px;
+        height: 10px;
+    }
+    
+    .monster-mouth {
+        width: 32px;
+        height: 16px;
+        bottom: 20px;
+    }
+    
+    .monster-body {
+        width: 95px;
+        height: 80px;
+        top: 95px;
+    }
+    
+    .monster-arm {
+        width: 28px;
+        height: 48px;
+        top: 105px;
+    }
+    
+    .monster-leg {
+        width: 32px;
+        height: 48px;
+        top: 165px;
+    }
+    
+    .monster-leg-left {
+        left: 28px;
+    }
+    
+    .monster-leg-right {
+        right: 28px;
     }
 
     .ultraman {
@@ -866,6 +1116,70 @@ body {
     
     .ultraman-container {
         height: 396px;  /* 缩短高度（没有脚） */
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    /* 小怪兽移动端480px样式 */
+    .monster {
+        width: 140px;
+        height: 190px;
+    }
+    
+    .monster-head {
+        width: 95px;
+        height: 95px;
+    }
+    
+    .monster-eye {
+        width: 18px;
+        height: 18px;
+        top: 30px;
+    }
+    
+    .monster-eye-left {
+        left: 20px;
+    }
+    
+    .monster-eye-right {
+        right: 20px;
+    }
+    
+    .monster-eye:before {
+        width: 8px;
+        height: 8px;
+    }
+    
+    .monster-mouth {
+        width: 28px;
+        height: 14px;
+        bottom: 18px;
+    }
+    
+    .monster-body {
+        width: 80px;
+        height: 70px;
+        top: 80px;
+    }
+    
+    .monster-arm {
+        width: 24px;
+        height: 40px;
+        top: 90px;
+    }
+    
+    .monster-leg {
+        width: 28px;
+        height: 40px;
+        top: 140px;
+    }
+    
+    .monster-leg-left {
+        left: 24px;
+    }
+    
+    .monster-leg-right {
+        right: 24px;
     }
 
     .ultraman {

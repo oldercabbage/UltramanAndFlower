@@ -7,16 +7,17 @@ document.addEventListener('DOMContentLoaded', function() {
     const shareBtn = document.getElementById('share-btn');
     const ultraman = document.getElementById('ultraman');
     const rightArm = document.getElementById('right-arm');
-    const flower = document.getElementById('flower');
+    const warmthLight = document.getElementById('warmth-light');
+    const monster = document.getElementById('monster');
     const message = document.getElementById('message');
-    const petalsFall = document.getElementById('petals-fall');
+    const warmthParticles = document.getElementById('warmth-particles');
     const card = document.getElementById('card');
 
     // 动画播放状态
     let isAnimating = false;
 
-    // 播放送花动画
-    function playGiveFlowerAnimation() {
+    // 播放送温暖动画
+    function playGiveWarmthAnimation() {
         if (isAnimating) return;
         
         isAnimating = true;
@@ -24,25 +25,31 @@ document.addEventListener('DOMContentLoaded', function() {
         playBtn.textContent = '播放中...';
 
         // 重置状态
-        ultraman.classList.remove('giving-flower');
+        ultraman.classList.remove('giving-warmth');
         rightArm.classList.remove('raise');
-        flower.classList.remove('show');
+        warmthLight.classList.remove('show');
+        monster.classList.remove('receiving-warmth');
         
         // 延迟一下让重置生效
         setTimeout(() => {
             // 1. 奥特曼移动和举臂
-            ultraman.classList.add('giving-flower');
+            ultraman.classList.add('giving-warmth');
             rightArm.classList.add('raise');
             
-            // 2. 显示花朵
+            // 2. 显示温暖光效
             setTimeout(() => {
-                flower.classList.add('show');
+                warmthLight.classList.add('show');
             }, 500);
 
-            // 3. 花瓣飘落效果
-            createPetalsFall();
+            // 3. 小怪兽接收温暖
+            setTimeout(() => {
+                monster.classList.add('receiving-warmth');
+            }, 800);
 
-            // 4. 显示消息
+            // 4. 温暖粒子飘落效果
+            createWarmthParticles();
+
+            // 5. 显示消息
             setTimeout(() => {
                 message.style.animation = 'none';
                 setTimeout(() => {
@@ -50,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }, 10);
             }, 1000);
 
-            // 5. 动画完成
+            // 6. 动画完成
             setTimeout(() => {
                 isAnimating = false;
                 playBtn.disabled = false;
@@ -59,27 +66,27 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 100);
     }
 
-    // 创建花瓣飘落效果
-    function createPetalsFall() {
-        // 清除之前的花瓣
-        petalsFall.innerHTML = '';
+    // 创建温暖粒子飘落效果
+    function createWarmthParticles() {
+        // 清除之前的粒子
+        warmthParticles.innerHTML = '';
         
-        // 创建多个花瓣
-        for (let i = 0; i < 20; i++) {
+        // 创建多个温暖粒子
+        for (let i = 0; i < 25; i++) {
             setTimeout(() => {
-                const petal = document.createElement('div');
-                petal.className = 'petal-fall';
-                petal.style.left = Math.random() * 100 + '%';
-                petal.style.animationDuration = (Math.random() * 3 + 2) + 's';
-                petal.style.animationDelay = (Math.random() * 1) + 's';
-                petal.style.transform = `rotate(${Math.random() * 360}deg)`;
-                petalsFall.appendChild(petal);
+                const particle = document.createElement('div');
+                particle.className = 'warmth-particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                particle.style.animationDelay = (Math.random() * 1) + 's';
+                particle.style.transform = `rotate(${Math.random() * 360}deg)`;
+                warmthParticles.appendChild(particle);
 
                 // 动画结束后移除
                 setTimeout(() => {
-                    petal.remove();
+                    particle.remove();
                 }, 5000);
-            }, i * 100);
+            }, i * 80);
         }
     }
 
@@ -87,8 +94,8 @@ document.addEventListener('DOMContentLoaded', function() {
     function shareCard() {
         // 获取当前页面URL
         const url = window.location.href;
-        const title = 'Q版奥特曼送花贺卡';
-        const text = '送给最爱的你 - 一份特别的电子贺卡';
+        const title = 'Q版奥特曼送温暖给小怪兽';
+        const text = '一份温暖的电子贺卡 - 传递爱与温暖';
 
         // 检查是否支持Web Share API
         if (navigator.share) {
@@ -185,15 +192,15 @@ document.addEventListener('DOMContentLoaded', function() {
             wx.ready(function() {
                 // 微信分享到朋友圈
                 wx.updateTimelineShareData({
-                    title: 'Q版奥特曼送花贺卡',
+                    title: 'Q版奥特曼送温暖给小怪兽',
                     link: window.location.href,
                     imgUrl: window.location.origin + '/images/og-image.jpg'
                 });
 
                 // 微信分享给朋友
                 wx.updateAppMessageShareData({
-                    title: 'Q版奥特曼送花贺卡',
-                    desc: '送给最爱的你 - 一份特别的电子贺卡',
+                    title: 'Q版奥特曼送温暖给小怪兽',
+                    desc: '一份温暖的电子贺卡 - 传递爱与温暖',
                     link: window.location.href,
                     imgUrl: window.location.origin + '/images/og-image.jpg'
                 });
@@ -206,7 +213,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const autoPlayDelay = isMobile ? 1500 : 1000;
     
     setTimeout(() => {
-        playGiveFlowerAnimation();
+        playGiveWarmthAnimation();
     }, autoPlayDelay);
 
     // 绑定事件 - 移动端兼容
@@ -239,7 +246,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         console.log('播放按钮被点击:', e ? e.type : 'direct');
-        playGiveFlowerAnimation();
+        playGiveWarmthAnimation();
     }
     
     function handleShareClick(e) {
@@ -361,7 +368,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // 向上滑动超过50px时播放动画
         if (diff > 50 && !isAnimating) {
-            playGiveFlowerAnimation();
+            playGiveWarmthAnimation();
         }
     });
 
@@ -370,7 +377,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (e.key === 'Enter' || e.key === ' ') {
             e.preventDefault();
             if (!isAnimating) {
-                playGiveFlowerAnimation();
+                playGiveWarmthAnimation();
             }
         }
     });

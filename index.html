@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <meta name="description" content="Q版奥特曼送花电子贺卡 - 送给最爱的宝宝">
-    <title>Q版奥特曼送花贺卡</title>
+    <meta name="description" content="Q版奥特曼送温暖给小怪兽 - 一份温暖的电子贺卡">
+    <title>Q版奥特曼送温暖给小怪兽</title>
     
     <!-- 微信分享优化 -->
-    <meta property="og:title" content="Q版奥特曼送花贺卡">
-    <meta property="og:description" content="送给最爱的宝宝 - 一份特别的电子贺卡">
+    <meta property="og:title" content="Q版奥特曼送温暖给小怪兽">
+    <meta property="og:description" content="一份温暖的电子贺卡 - 传递爱与温暖">
     <meta property="og:image" content="./images/og-image.jpg">
     <meta property="og:type" content="website">
     <meta property="og:url" content="">
     
     <!-- 微信分享 -->
-    <meta name="wechat:title" content="Q版奥特曼送花贺卡">
-    <meta name="wechat:description" content="送给最爱的宝宝 - 一份特别的电子贺卡">
+    <meta name="wechat:title" content="Q版奥特曼送温暖给小怪兽">
+    <meta name="wechat:description" content="一份温暖的电子贺卡 - 传递爱与温暖">
     <meta name="wechat:image" content="./images/og-image.jpg">
     
     <link rel="stylesheet" href="css/style.css">
@@ -37,11 +37,11 @@
         <div class="card" id="card">
             <!-- 标题 -->
             <div class="title-container">
-                <h1 class="title">送给最爱的宝宝</h1>
-                <p class="subtitle">一份特别的礼物</p>
+                <h1 class="title">Q版奥特曼送温暖</h1>
+                <p class="subtitle">给小怪兽的温暖礼物</p>
             </div>
 
-            <!-- 奥特曼 -->
+            <!-- 奥特曼和小怪兽 -->
             <div class="ultraman-container">
                 <div class="ultraman" id="ultraman">
                     <div class="ultraman-head">
@@ -53,27 +53,39 @@
                     </div>
                     <div class="ultraman-arm left-arm"></div>
                     <div class="ultraman-arm right-arm" id="right-arm">
-                        <div class="flower" id="flower">
-                            <div class="petal petal1"></div>
-                            <div class="petal petal2"></div>
-                            <div class="petal petal3"></div>
-                            <div class="petal petal4"></div>
-                            <div class="petal petal5"></div>
-                            <div class="flower-center"></div>
+                        <div class="warmth-light" id="warmth-light">
+                            <div class="light-ring light-ring1"></div>
+                            <div class="light-ring light-ring2"></div>
+                            <div class="light-ring light-ring3"></div>
+                            <div class="light-core"></div>
                         </div>
                     </div>
                     <div class="ultraman-leg left-leg"></div>
                     <div class="ultraman-leg right-leg"></div>
+                </div>
+                
+                <!-- 小怪兽 -->
+                <div class="monster" id="monster">
+                    <div class="monster-head">
+                        <div class="monster-eye monster-eye-left"></div>
+                        <div class="monster-eye monster-eye-right"></div>
+                        <div class="monster-mouth"></div>
+                    </div>
+                    <div class="monster-body"></div>
+                    <div class="monster-arm monster-arm-left"></div>
+                    <div class="monster-arm monster-arm-right"></div>
+                    <div class="monster-leg monster-leg-left"></div>
+                    <div class="monster-leg monster-leg-right"></div>
                 </div>
             </div>
 
             <!-- 消息内容 -->
             <div class="message-container">
                 <div class="message" id="message">
-                    <p class="message-text">亲爱的宝宝，</p>
-                    <p class="message-text">这束花送给宝宝，</p>
-                    <p class="message-text">代表我对宝宝的爱意！</p>
-                    <p class="message-text">❤️</p>
+                    <p class="message-text">小怪兽，</p>
+                    <p class="message-text">让我给你送温暖，</p>
+                    <p class="message-text">传递爱与关怀！</p>
+                    <p class="message-text">💝</p>
                 </div>
             </div>
 
@@ -83,15 +95,15 @@
                 <button class="btn btn-secondary" id="share-btn">分享给朋友</button>
             </div>
 
-            <!-- 花瓣飘落效果 -->
-            <div class="petals-fall" id="petals-fall"></div>
+            <!-- 温暖光效飘落 -->
+            <div class="warmth-particles" id="warmth-particles"></div>
         </div>
 
         <!-- 祝福语 -->
         <div class="blessing" id="blessing">
-            <p>愿我们的爱情</p>
-            <p>如这束花一样美丽</p>
-            <p>永远绽放！</p>
+            <p>愿温暖与爱</p>
+            <p>如阳光般照耀</p>
+            <p>永远传递！</p>
         </div>
     </div>
 
