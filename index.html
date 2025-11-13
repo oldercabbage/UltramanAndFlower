@@ -6,6 +6,14 @@
     <meta name="description" content="Q版奥特曼送温暖给小怪兽 - 一份温暖的电子贺卡">
     <title>Q版奥特曼送温暖给小怪兽</title>
     
+    <!-- 禁用缓存 - 确保微信浏览器显示最新内容 -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <meta name="cache-control" content="no-cache">
+    <meta name="expires" content="0">
+    <meta name="pragma" content="no-cache">
+    
     <!-- 微信分享优化 -->
     <meta property="og:title" content="Q版奥特曼送温暖给小怪兽">
     <meta property="og:description" content="一份温暖的电子贺卡 - 传递爱与温暖">
@@ -18,7 +26,38 @@
     <meta name="wechat:description" content="一份温暖的电子贺卡 - 传递爱与温暖">
     <meta name="wechat:image" content="./images/og-image.jpg">
     
-    <link rel="stylesheet" href="css/style.css">
+    <!-- 版本号：每次更新时修改此版本号以强制刷新缓存 -->
+    <script>
+        // 版本号 - 每次更新场景时修改此版本号
+        const APP_VERSION = '2.0.0';
+        const VERSION_KEY = 'aotmsh_version';
+        
+        // 检查版本并清理缓存
+        (function() {
+            const storedVersion = localStorage.getItem(VERSION_KEY);
+            if (storedVersion !== APP_VERSION) {
+                // 版本不匹配，清理所有缓存
+                try {
+                    localStorage.clear();
+                    sessionStorage.clear();
+                    localStorage.setItem(VERSION_KEY, APP_VERSION);
+                } catch(e) {
+                    console.log('清理缓存时出错:', e);
+                }
+            } else {
+                localStorage.setItem(VERSION_KEY, APP_VERSION);
+            }
+        })();
+        
+        // 动态加载CSS，添加版本号和时间戳
+        (function() {
+            const timestamp = new Date().getTime();
+            const link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = 'css/style.css?v=' + APP_VERSION + '&t=' + timestamp;
+            document.head.appendChild(link);
+        })();
+    </script>
     <link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
 <body>
@@ -114,7 +153,46 @@
     </audio>
     -->
 
-    <script src="js/main.js"></script>
+    <!-- 动态加载JS，添加版本号和时间戳 -->
+    <script>
+        (function() {
+            const APP_VERSION = '2.0.0';
+            const timestamp = new Date().getTime();
+            const script = document.createElement('script');
+            script.src = 'js/main.js?v=' + APP_VERSION + '&t=' + timestamp;
+            script.onerror = function() {
+                // 如果加载失败，尝试不带版本号加载
+                const fallbackScript = document.createElement('script');
+                fallbackScript.src = 'js/main.js';
+                document.body.appendChild(fallbackScript);
+            };
+            document.body.appendChild(script);
+        })();
+    </script>
+    
+    <!-- 微信浏览器缓存清理 -->
+    <script>
+        // 微信浏览器特殊处理
+        if (/MicroMessenger/i.test(navigator.userAgent)) {
+            // 检测是否从缓存加载
+            window.addEventListener('pageshow', function(event) {
+                if (event.persisted) {
+                    // 页面从缓存中恢复，强制刷新
+                    window.location.reload(true);
+                }
+            });
+            
+            // 定期检查版本
+            setInterval(function() {
+                const APP_VERSION = '2.0.0';
+                const VERSION_KEY = 'aotmsh_version';
+                const storedVersion = localStorage.getItem(VERSION_KEY);
+                if (storedVersion !== APP_VERSION) {
+                    window.location.reload(true);
+                }
+            }, 5000); // 每5秒检查一次
+        }
+    </script>
 </body>
 </html>
 

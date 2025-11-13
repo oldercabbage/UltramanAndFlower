@@ -1,4 +1,34 @@
 // 主JavaScript文件
+// 版本：2.0.0 - Q版奥特曼送温暖给小怪兽
+
+// 版本检查和缓存清理
+(function() {
+    const APP_VERSION = '2.0.0';
+    const VERSION_KEY = 'aotmsh_version';
+    
+    // 检查版本
+    const storedVersion = localStorage.getItem(VERSION_KEY);
+    if (storedVersion && storedVersion !== APP_VERSION) {
+        // 版本不匹配，清理缓存并刷新
+        try {
+            localStorage.clear();
+            sessionStorage.clear();
+            // 强制刷新
+            if (window.location.search.indexOf('nocache') === -1) {
+                window.location.href = window.location.href.split('?')[0] + '?nocache=' + Date.now();
+            }
+        } catch(e) {
+            console.log('清理缓存时出错:', e);
+        }
+    }
+    
+    // 保存当前版本
+    try {
+        localStorage.setItem(VERSION_KEY, APP_VERSION);
+    } catch(e) {
+        console.log('保存版本时出错:', e);
+    }
+})();
 
 // 等待DOM加载完成
 document.addEventListener('DOMContentLoaded', function() {
